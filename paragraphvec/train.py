@@ -21,7 +21,7 @@ def start(data_file_name,
           model_ver='dm',
           context_size=0,
           vec_combine_method='sum',
-          save_all=False,
+          save_all=True,
           generate_plot=True,
           max_generated_batches=5,
           num_workers=1):
