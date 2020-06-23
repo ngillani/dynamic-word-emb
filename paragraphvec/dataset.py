@@ -140,13 +140,13 @@ def load_and_cache_data(
 	# if False:
 		print('Loading data from catch ...')
 		with open(join(DATA_DIR, prepared_data_file), 'rb') as f:
-			doc_ids, context_ids, target_noise_ids, word_to_ind_dict  = pickle.load(f)
+			doc_ids, context_ids, target_noise_ids, word_to_ind_dict = pickle.load(f)
 		print('data loaded from cache!')
 	
 	else:
 		print('Preparing data ...')
 		
-		N_THREADS = 10
+		N_THREADS = 5
 
 		csv.field_size_limit(sys.maxsize)
 
@@ -196,7 +196,8 @@ def load_and_cache_data(
 		# exit()
 
 		print ('Writing to disk ...')
-		word_to_ind_dict = curr_vocab.stoi
+		word_to_ind_dict = dict(curr_vocab.stoi)
+		print (word_to_ind_dict)
 		with open(join(DATA_DIR, prepared_data_file), 'wb') as f:
 			pickle.dump((doc_ids, context_ids, target_noise_ids, word_to_ind_dict), f)
 			print('Data written to disk!')

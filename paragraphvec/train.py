@@ -21,7 +21,7 @@ def start(data_file_name,
           model_ver='dm',
           context_size=0,
           vec_combine_method='sum',
-          save_all=False,
+          save_all=True,
           generate_plot=True,
           max_generated_batches=5,
           num_workers=1):
@@ -156,9 +156,17 @@ def _run(dataloader,
         model = DMSpline(vec_dim, num_splines=len(all_doc_ids), num_words=vocabulary_size)
         cost_func = NegativeSamplingWithSpline()
 
-    optimizer = Adam(params=model.parameters(), lr=lr, weight_decay=0.01)
-    # optimizer = Adam(params=model.parameters(), lr=lr)
-    # optimizer = SGD(params=model.parameters(), lr=lr, momentum=0.9, weight_decay=0.01)
+    # Only apply weight decay to the offset vectors
+    params_to_decay = []
+    other_params = []
+    for name, param in model.named_parameters():
+        if name == '_D':
+            params_to_decay.append(param)
+        else:
+            other_params.append(param)
+    
+    optimizer1 = Adam(params=params_to_decay, lr=lr, weight_decay=0.01)
+    optimizer2 = Adam(params=other_params, lr=lr)
 
     if torch.cuda.is_available():
         model.cuda()
@@ -223,7 +231,8 @@ def _run(dataloader,
             loss.append(x.item())
             model.zero_grad()
             x.backward()
-            optimizer.step()
+            optimizer1.step()
+            optimizer2.step()
             _print_progress(epoch_i, batch_i, num_batches)
             # break
 
@@ -238,7 +247,8 @@ def _run(dataloader,
             'epoch': epoch_i + 1,
             'model_state_dict': model.state_dict(),
             'best_loss': best_loss,
-            'optimizer_state_dict': optimizer.state_dict(),
+            'optimizer1_state_dict': optimizer1.state_dict(),
+            'optimizer2_state_dict': optimizer2.state_dict(),
             'word_to_index_dict': word_to_ind_dict
         }
 
