@@ -197,7 +197,6 @@ def load_and_cache_data(
 
 		print ('Writing to disk ...')
 		word_to_ind_dict = dict(curr_vocab.stoi)
-		print (word_to_ind_dict)
 		with open(join(DATA_DIR, prepared_data_file), 'wb') as f:
 			pickle.dump((doc_ids, context_ids, target_noise_ids, word_to_ind_dict), f)
 			print('Data written to disk!')
