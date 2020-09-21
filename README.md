@@ -7,13 +7,13 @@ Quick sketch of important files (most of the code is taken from the paragraph ve
 - `paragraphvec/compute_bias.py`: functions for retrieving vectors and computing bias using the relative norm distance metric from [this paper](https://pnas.org/content/early/2018/03/30/1720347115).
 - `paragraphvec/non_dynamic_embeddings.py`: functions for producing the attribute-specific w2v models, used as a benchmark in figure 3(a)
 
-### Instructions for replicating the main results from [Simple dynamic word embeddings for mapping perceptions in the public sphere](https://arxiv.org/pdf/1904.03352.pdf)
+### Instructions for replicating the main results from the corrected version of [Simple dynamic word embeddings for mapping perceptions in the public sphere](https://arxiv.org/pdf/1904.03352.pdf)
 
 - Figure 2
 	- [COHA data](https://www.dropbox.com/s/k92xm2ykjhof8a6/all_data_1910_through_1990.csv?dl=0).
 	- Command to train model: 
 
-	`CUDA_VISIBLE_DEVICES=1 python train.py start --data_file_name 'all_data_1910_through_1990.csv' --num_epochs 3 --batch_size 128 --num_noise_words 3 --vec_dim 100 --context_size 4 --lr 1e-3 --model_ver 'dm'`
+	`CUDA_VISIBLE_DEVICES=0 python train.py start --data_file_name 'all_data_1910_through_1990.csv' --num_epochs 3 --batch_size 128 --num_noise_words 3 --vec_dim 100 --context_size 4 --lr 1e-3 --model_ver 'dm'`
 
 	- Explanation of parameters:
 		- data_file_name => data to be used to train model.  Rows correspond to text entries (e.g. an element in COHA).  The first column contains the attribute ID (e.g. decade of COHA document); the second column contains the text
@@ -26,26 +26,26 @@ Quick sketch of important files (most of the code is taken from the paragraph ve
 		- model_ver => model version (in our case, always 'dm' for 'distributed memory', from the fact that we adapt our model from the distributed memory model of paragraph vectors)
 	- To produce bias scores, we first ensure that the correct word lists are uncommented in the paragraphvec/compute_bias.py file's "start" function.  Next, we run the following command, replacing the model file name with the correct one outputted by the command above: 
 
-	`python compute_bias.py start --data_file_name 'all_data_1910_through_1990.csv' --model_file_name <MODEL_FILE_NAME>`
+	`python compute_bias.py start --data_file_name 'all_data_1910_through_1990.csv' --model_file_name <TRAINED_MODEL_FILE_NAME>`
 
 	- The above step should print out the resultant bias scores per decade (just make sure `start` is invoking the right function in the file).  These scores are computed for gender and ethnic occupation and compared to the scores produced in Garg et al. (which were provided to us directly from the authors).
 
 - Figure 3
     - To produce a) and c), we run `find_nearest_words_per_attr_value` found in `compute_bias.py`
-    - To produce b) and d), we run `find_nearest_words_non_dynamic()` found in `compute_bias.py`
+    - To produce b) and d), we run `find_nearest_words_non_dynamic` found in `compute_bias.py`
 
 - Figure 4
 	- Talk radio [timeseries data](https://www.dropbox.com/s/2c678dhb1w2q136/radio_data_by_day_mid_aug_mid_sept.csv?dl=0).
 	- Command to train model: 
 
-	`CUDA_VISIBLE_DEVICES=1 python train.py start --data_file_name 'radio_data_by_day_mid_aug_mid_sept.csv' --num_epochs 3 --batch_size 128 --num_noise_words 3 --vec_dim 100 --context_size 4 --lr 1e-3 --model_ver 'dm'`
+	`CUDA_VISIBLE_DEVICES=0 python train.py start --data_file_name 'radio_data_by_day_mid_aug_mid_sept.csv' --num_epochs 3 --batch_size 128 --num_noise_words 3 --vec_dim 100 --context_size 4 --lr 1e-3 --model_ver 'dm'`
 
 	- Explanation of parameters: same as above for Figure 2
 	- To produce bias scores, we first ensure that the correct word lists (namely, the refugee-related ones) are uncommented in the paragraphvec/compute_bias.py file's "start" function.  Next, we run the following command, replacing the model file name with the correct one outputted by the command above: 
 
-	`python compute_bias.py start --model_file_name 'radio_data_by_day_mid_aug_mid_sept_model.dm.sum_contextsize.4_numnoisewords.3_vecdim.100_batchsize.128_lr.0.001000_epoch.1_loss.1.386191.pth.tar' `
+	`python compute_bias.py start --model_file_name <TRAINED_MODEL_FILE_NAME>  `
 
-	- Bias scores will the printed to the terminal.  We divide these by |R| (the number of refugee-related terms, which in our case is 7) to produce the values for Figure 4(b)
+	- Bias scores will the printed to the terminal.  We divide these by |R| (the number of refugee-related terms, which in our case is 7) to produce the values for Figure 4(b).
     - To produce the values for Figure 4(a), we run
 
 	`PYTHONPATH=. python non_dynamic_embeddings.py`
