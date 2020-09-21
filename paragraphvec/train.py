@@ -165,7 +165,8 @@ def _run(dataloader,
         else:
             other_params.append(param)
     
-    optimizer1 = Adam(params=params_to_decay, lr=lr, weight_decay=1e-5)
+    # optimizer1 = Adam(params=params_to_decay, lr=lr, weight_decay=1e-5)
+    optimizer1 = Adam(params=params_to_decay, lr=lr)
     optimizer2 = Adam(params=other_params, lr=lr)
 
     if torch.cuda.is_available():

@@ -29,29 +29,19 @@ def start(model_file_name, model_ver):
     """
 
     ### Female vs. Male wrt occupation words
-    # neutral_words = ['janitor', 'statistician', 'midwife', 'bailiff', 'auctioneer', 'photographer', 'geologist', 'shoemaker', 'athlete', 'cashier', 'dancer', 'housekeeper', 'accountant', 'physicist', 'gardener', 'dentist', 'weaver', 'blacksmith', 'psychologist', 'supervisor', 'mathematician', 'surveyor', 'tailor', 'designer', 'economist', 'mechanic', 'laborer', 'postmaster', 'broker', 'chemist', 'librarian', 'attendant', 'clerical', 'musician', 'porter', 'scientist', 'carpenter', 'sailor', 'instructor', 'sheriff', 'pilot', 'inspector', 'mason', 'baker', 'administrator', 'architect', 'collector', 'operator', 'surgeon', 'driver', 'painter', 'nurse', 'cook', 'engineer', 'retired', 'sales', 'lawyer', 'clergy', 'physician', 'farmer', 'clerk', 'manager', 'guard', 'artist', 'smith', 'official', 'police', 'doctor', 'professor', 'student', 'judge', 'teacher', 'author', 'secretary', 'soldier']
-    # baseline_group = ['he', 'son', 'his', 'him', 'father', 'man', 'boy', 'himself', 'male', 'brother', 'sons', 'fathers', 'men', 'boys', 'males', 'brothers', 'uncle', 'uncles', 'nephew', 'nephews']
-    # target_group = ['she', 'daughter', 'hers', 'her', 'mother', 'woman', 'girl', 'herself', 'female', 'sister', 'daughters', 'mothers', 'women', 'girls', 'femen', 'sisters', 'aunt', 'aunts', 'niece', 'nieces']
+    neutral_words = ['janitor', 'statistician', 'midwife', 'bailiff', 'auctioneer', 'photographer', 'geologist', 'shoemaker', 'athlete', 'cashier', 'dancer', 'housekeeper', 'accountant', 'physicist', 'gardener', 'dentist', 'weaver', 'blacksmith', 'psychologist', 'supervisor', 'mathematician', 'surveyor', 'tailor', 'designer', 'economist', 'mechanic', 'laborer', 'postmaster', 'broker', 'chemist', 'librarian', 'attendant', 'clerical', 'musician', 'porter', 'scientist', 'carpenter', 'sailor', 'instructor', 'sheriff', 'pilot', 'inspector', 'mason', 'baker', 'administrator', 'architect', 'collector', 'operator', 'surgeon', 'driver', 'painter', 'nurse', 'cook', 'engineer', 'retired', 'sales', 'lawyer', 'clergy', 'physician', 'farmer', 'clerk', 'manager', 'guard', 'artist', 'smith', 'official', 'police', 'doctor', 'professor', 'student', 'judge', 'teacher', 'author', 'secretary', 'soldier']
+    baseline_group = ['he', 'son', 'his', 'him', 'father', 'man', 'boy', 'himself', 'male', 'brother', 'sons', 'fathers', 'men', 'boys', 'males', 'brothers', 'uncle', 'uncles', 'nephew', 'nephews']
+    target_group = ['she', 'daughter', 'hers', 'her', 'mother', 'woman', 'girl', 'herself', 'female', 'sister', 'daughters', 'mothers', 'women', 'girls', 'femen', 'sisters', 'aunt', 'aunts', 'niece', 'nieces']
 
     ### Asian vs. White wrt occupation words
     # neutral_words = ['janitor', 'statistician', 'midwife', 'bailiff', 'auctioneer', 'photographer', 'geologist', 'shoemaker', 'athlete', 'cashier', 'dancer', 'housekeeper', 'accountant', 'physicist', 'gardener', 'dentist', 'weaver', 'blacksmith', 'psychologist', 'supervisor', 'mathematician', 'surveyor', 'tailor', 'designer', 'economist', 'mechanic', 'laborer', 'postmaster', 'broker', 'chemist', 'librarian', 'attendant', 'clerical', 'musician', 'porter', 'scientist', 'carpenter', 'sailor', 'instructor', 'sheriff', 'pilot', 'inspector', 'mason', 'baker', 'administrator', 'architect', 'collector', 'operator', 'surgeon', 'driver', 'painter', 'nurse', 'cook', 'engineer', 'retired', 'sales', 'lawyer', 'clergy', 'physician', 'farmer', 'clerk', 'manager', 'guard', 'artist', 'smith', 'official', 'police', 'doctor', 'professor', 'student', 'judge', 'teacher', 'author', 'secretary', 'soldier']
     # baseline_group = ['harris', 'nelson', 'robinson', 'thompson', 'moore', 'wright', 'anderson', 'clark', 'jackson', 'taylor', 'scott', 'davis', 'allen', 'adams', 'lewis', 'williams', 'jones', 'wilson', 'martin', 'johnson']
     # target_group = ['cho', 'wong', 'tang', 'huang', 'chu', 'chung', 'ng', 'wu', 'liu', 'chen', 'lin', 'yang', 'kim', 'chang', 'shah', 'wang', 'li', 'khan', 'singh', 'hong']
 
-    ### Outsider vs all adjectives wrt Asians
-    # neutral_words = ['cho', 'wong', 'tang', 'huang', 'chu', 'chung', 'ng', 'wu', 'liu', 'chen', 'lin', 'yang', 'kim', 'chang', 'shah', 'wang', 'li', 'khan', 'singh', 'hong']
-    # baseline_group = ['headstrong', 'thankless', 'tactful', 'distrustful', 'quarrelsome', 'effeminate', 'fickle', 'talkative', 'dependable', 'resentful', 'sarcastic', 'unassuming', 'changeable', 'resourceful', 'persevering', 'forgiving', 'assertive', 'individualistic', 'vindictive', 'sophisticated', 'deceitful', 'impulsive', 'sociable', 'methodical', 'idealistic', 'thrifty', 'outgoing', 'intolerant', 'autocratic', 'conceited', 'inventive', 'dreamy', 'appreciative', 'forgetful', 'forceful', 'submissive', 'pessimistic', 'versatile', 'adaptable', 'reflective', 'inhibited', 'outspoken', 'quitting', 'unselfish', 'immature', 'painstaking', 'leisurely', 'infantile', 'sly', 'praising', 'cynical', 'irresponsible', 'arrogant', 'obliging', 'unkind', 'wary', 'greedy', 'obnoxious', 'irritable', 'discreet', 'frivolous', 'cowardly', 'rebellious', 'adventurous', 'enterprising', 'unscrupulous', 'poised', 'moody', 'unfriendly', 'optimistic', 'disorderly', 'peaceable', 'considerate', 'humorous', 'worrying', 'preoccupied', 'trusting', 'mischievous', 'robust', 'superstitious', 'noisy', 'tolerant', 'realistic', 'masculine', 'witty', 'informal', 'prejudiced', 'reckless', 'jolly', 'courageous', 'meek', 'stubborn', 'aloof', 'sentimental', 'complaining', 'unaffected', 'cooperative', 'unstable', 'feminine', 'timid', 'retiring', 'relaxed', 'imaginative', 'shrewd', 'conscientious', 'industrious', 'hasty', 'commonplace', 'lazy', 'gloomy', 'thoughtful', 'dignified', 'wholesome', 'affectionate', 'aggressive', 'awkward', 'energetic', 'tough', 'shy', 'queer', 'careless', 'restless', 'cautious', 'polished', 'tense', 'suspicious', 'dissatisfied', 'ingenious', 'fearful', 'daring', 'persistent', 'demanding', 'impatient', 'contented', 'selfish', 'rude', 'spontaneous', 'conventional', 'cheerful', 'enthusiastic', 'modest', 'ambitious', 'alert', 'defensive', 'mature', 'coarse', 'charming', 'clever', 'shallow', 'deliberate', 'stern', 'emotional', 'rigid', 'mild', 'cruel', 'artistic', 'hurried', 'sympathetic', 'dull', 'civilized', 'loyal', 'withdrawn', 'confident', 'indifferent', 'conservative', 'foolish', 'moderate', 'handsome', 'helpful', 'gentle', 'dominant', 'hostile', 'generous', 'reliable', 'sincere', 'precise', 'calm', 'healthy', 'attractive', 'progressive', 'confused', 'rational', 'stable', 'bitter', 'sensitive', 'initiative', 'loud', 'thorough', 'logical', 'intelligent', 'steady', 'formal', 'complicated', 'cool', 'curious', 'reserved', 'silent', 'honest', 'quick', 'friendly', 'efficient', 'pleasant', 'severe', 'peculiar', 'quiet', 'weak', 'anxious', 'nervous', 'warm', 'slow', 'dependent', 'wise', 'organized', 'affected', 'reasonable', 'capable', 'active', 'independent', 'patient', 'practical', 'serious', 'understanding', 'cold', 'responsible', 'simple', 'original', 'strong', 'determined', 'natural', 'kind']
-    # target_group = ['devious', 'bizarre', 'venomous', 'erratic', 'barbaric', 'frightening', 'deceitful', 'forceful', 'deceptive', 'envious', 'greedy', 'hateful', 'contemptible', 'brutal', 'monstrous', 'calculating', 'cruel', 'intolerant', 'aggressive', 'monstrous']
-
-    ### Islam vs. Christianity wrt terrorism words
-    # neutral_words = ['terror', 'terrorism', 'violence', 'attack', 'death', 'military', 'war', 'radical', 'injuries', 'bomb', 'target', 'conflict', 'dangerous', 'kill', 'murder', 'strike', 'dead', 'violence', 'fight', 'death', 'force', 'stronghold', 'wreckage', 'aggression', 'slaughter', 'execute', 'overthrow', 'casualties', 'massacre', 'retaliation', 'proliferation', 'militia', 'hostility', 'debris', 'acid', 'execution', 'militant', 'rocket', 'guerrilla', 'sacrifice', 'enemy', 'soldier', 'terrorist', 'missile', 'hostile', 'revolution', 'resistance', 'shoot']
-    # baseline_group = ['baptism', 'messiah', 'catholicism', 'resurrection', 'christianity', 'salvation', 'protestant', 'gospel', 'trinity', 'jesus', 'christ', 'christian', 'cross', 'catholic', 'church']
-    # target_group = ['allah', 'ramadan', 'turban', 'emir', 'salaam', 'sunni', 'koran', 'imam', 'sultan', 'prophet', 'veil', 'ayatollah', 'shiite', 'mosque', 'islam', 'sheik', 'muslim', 'muhammad']
-
     ### Refugee outsider vs. all adjectives
-    neutral_words = ['refugee', 'refugees', 'asylum', 'migrant', 'migrants', 'immigrant', 'immigrants']
-    baseline_group = ['headstrong', 'thankless', 'tactful', 'distrustful', 'quarrelsome', 'effeminate', 'fickle', 'talkative', 'dependable', 'resentful', 'sarcastic', 'unassuming', 'changeable', 'resourceful', 'persevering', 'forgiving', 'assertive', 'individualistic', 'vindictive', 'sophisticated', 'deceitful', 'impulsive', 'sociable', 'methodical', 'idealistic', 'thrifty', 'outgoing', 'intolerant', 'autocratic', 'conceited', 'inventive', 'dreamy', 'appreciative', 'forgetful', 'forceful', 'submissive', 'pessimistic', 'versatile', 'adaptable', 'reflective', 'inhibited', 'outspoken', 'quitting', 'unselfish', 'immature', 'painstaking', 'leisurely', 'infantile', 'sly', 'praising', 'cynical', 'irresponsible', 'arrogant', 'obliging', 'unkind', 'wary', 'greedy', 'obnoxious', 'irritable', 'discreet', 'frivolous', 'cowardly', 'rebellious', 'adventurous', 'enterprising', 'unscrupulous', 'poised', 'moody', 'unfriendly', 'optimistic', 'disorderly', 'peaceable', 'considerate', 'humorous', 'worrying', 'preoccupied', 'trusting', 'mischievous', 'robust', 'superstitious', 'noisy', 'tolerant', 'realistic', 'masculine', 'witty', 'informal', 'prejudiced', 'reckless', 'jolly', 'courageous', 'meek', 'stubborn', 'aloof', 'sentimental', 'complaining', 'unaffected', 'cooperative', 'unstable', 'feminine', 'timid', 'retiring', 'relaxed', 'imaginative', 'shrewd', 'conscientious', 'industrious', 'hasty', 'commonplace', 'lazy', 'gloomy', 'thoughtful', 'dignified', 'wholesome', 'affectionate', 'aggressive', 'awkward', 'energetic', 'tough', 'shy', 'queer', 'careless', 'restless', 'cautious', 'polished', 'tense', 'suspicious', 'dissatisfied', 'ingenious', 'fearful', 'daring', 'persistent', 'demanding', 'impatient', 'contented', 'selfish', 'rude', 'spontaneous', 'conventional', 'cheerful', 'enthusiastic', 'modest', 'ambitious', 'alert', 'defensive', 'mature', 'coarse', 'charming', 'clever', 'shallow', 'deliberate', 'stern', 'emotional', 'rigid', 'mild', 'cruel', 'artistic', 'hurried', 'sympathetic', 'dull', 'civilized', 'loyal', 'withdrawn', 'confident', 'indifferent', 'conservative', 'foolish', 'moderate', 'handsome', 'helpful', 'gentle', 'dominant', 'hostile', 'generous', 'reliable', 'sincere', 'precise', 'calm', 'healthy', 'attractive', 'progressive', 'confused', 'rational', 'stable', 'bitter', 'sensitive', 'initiative', 'loud', 'thorough', 'logical', 'intelligent', 'steady', 'formal', 'complicated', 'cool', 'curious', 'reserved', 'silent', 'honest', 'quick', 'friendly', 'efficient', 'pleasant', 'severe', 'peculiar', 'quiet', 'weak', 'anxious', 'nervous', 'warm', 'slow', 'dependent', 'wise', 'organized', 'affected', 'reasonable', 'capable', 'active', 'independent', 'patient', 'practical', 'serious', 'understanding', 'cold', 'responsible', 'simple', 'original', 'strong', 'determined', 'natural', 'kind']
-    target_group = ['illegal', 'illegals', 'devious', 'bizarre', 'venomous', 'erratic', 'barbaric', 'frightening', 'deceitful', 'forceful', 'deceptive', 'envious', 'greedy', 'hateful', 'contemptible', 'brutal', 'monstrous', 'calculating', 'cruel', 'intolerant', 'aggressive', 'monstrous', 'violent']
+    # neutral_words = ['refugee', 'refugees', 'asylum', 'migrant', 'migrants', 'immigrant', 'immigrants']
+    # baseline_group = ['headstrong', 'thankless', 'tactful', 'distrustful', 'quarrelsome', 'effeminate', 'fickle', 'talkative', 'dependable', 'resentful', 'sarcastic', 'unassuming', 'changeable', 'resourceful', 'persevering', 'forgiving', 'assertive', 'individualistic', 'vindictive', 'sophisticated', 'deceitful', 'impulsive', 'sociable', 'methodical', 'idealistic', 'thrifty', 'outgoing', 'intolerant', 'autocratic', 'conceited', 'inventive', 'dreamy', 'appreciative', 'forgetful', 'forceful', 'submissive', 'pessimistic', 'versatile', 'adaptable', 'reflective', 'inhibited', 'outspoken', 'quitting', 'unselfish', 'immature', 'painstaking', 'leisurely', 'infantile', 'sly', 'praising', 'cynical', 'irresponsible', 'arrogant', 'obliging', 'unkind', 'wary', 'greedy', 'obnoxious', 'irritable', 'discreet', 'frivolous', 'cowardly', 'rebellious', 'adventurous', 'enterprising', 'unscrupulous', 'poised', 'moody', 'unfriendly', 'optimistic', 'disorderly', 'peaceable', 'considerate', 'humorous', 'worrying', 'preoccupied', 'trusting', 'mischievous', 'robust', 'superstitious', 'noisy', 'tolerant', 'realistic', 'masculine', 'witty', 'informal', 'prejudiced', 'reckless', 'jolly', 'courageous', 'meek', 'stubborn', 'aloof', 'sentimental', 'complaining', 'unaffected', 'cooperative', 'unstable', 'feminine', 'timid', 'retiring', 'relaxed', 'imaginative', 'shrewd', 'conscientious', 'industrious', 'hasty', 'commonplace', 'lazy', 'gloomy', 'thoughtful', 'dignified', 'wholesome', 'affectionate', 'aggressive', 'awkward', 'energetic', 'tough', 'shy', 'queer', 'careless', 'restless', 'cautious', 'polished', 'tense', 'suspicious', 'dissatisfied', 'ingenious', 'fearful', 'daring', 'persistent', 'demanding', 'impatient', 'contented', 'selfish', 'rude', 'spontaneous', 'conventional', 'cheerful', 'enthusiastic', 'modest', 'ambitious', 'alert', 'defensive', 'mature', 'coarse', 'charming', 'clever', 'shallow', 'deliberate', 'stern', 'emotional', 'rigid', 'mild', 'cruel', 'artistic', 'hurried', 'sympathetic', 'dull', 'civilized', 'loyal', 'withdrawn', 'confident', 'indifferent', 'conservative', 'foolish', 'moderate', 'handsome', 'helpful', 'gentle', 'dominant', 'hostile', 'generous', 'reliable', 'sincere', 'precise', 'calm', 'healthy', 'attractive', 'progressive', 'confused', 'rational', 'stable', 'bitter', 'sensitive', 'initiative', 'loud', 'thorough', 'logical', 'intelligent', 'steady', 'formal', 'complicated', 'cool', 'curious', 'reserved', 'silent', 'honest', 'quick', 'friendly', 'efficient', 'pleasant', 'severe', 'peculiar', 'quiet', 'weak', 'anxious', 'nervous', 'warm', 'slow', 'dependent', 'wise', 'organized', 'affected', 'reasonable', 'capable', 'active', 'independent', 'patient', 'practical', 'serious', 'understanding', 'cold', 'responsible', 'simple', 'original', 'strong', 'determined', 'natural', 'kind']
+    # target_group = ['illegal', 'illegals', 'devious', 'bizarre', 'venomous', 'erratic', 'barbaric', 'frightening', 'deceitful', 'forceful', 'deceptive', 'envious', 'greedy', 'hateful', 'contemptible', 'brutal', 'monstrous', 'calculating', 'cruel', 'intolerant', 'aggressive', 'monstrous', 'violent']
 
     # load model and data
     vec_dim = int(re.search('_vecdim\.(\d+)_', model_file_name).group(1))
@@ -67,7 +57,8 @@ def start(model_file_name, model_ver):
 
     # compute_bias_categorical(model, word_to_ind_dict, num_docs, neutral_words, baseline_group, target_group)
     # check_average_similarities(model, word_to_ind_dict, num_docs)
-    find_nearest_words(model, word_to_ind_dict, num_docs)
+    # find_nearest_words(model, word_to_ind_dict, num_docs)
+    find_nearest_words_per_attr_value(model, word_to_ind_dict, num_docs)
 
 
 def find_nearest_words(model, word_to_ind_dict, num_docs):
@@ -81,16 +72,8 @@ def find_nearest_words(model, word_to_ind_dict, num_docs):
     count = 0
     for i in range(0, num_docs):
         word1_vec = np.array(model.get_baseline_word_vector(word_to_ind_dict[w1])) + np.array(model.get_paragraph_word_vector(i, word_to_ind_dict[w1]))
-        # print ('baseline norm: ', np.linalg.norm(np.array(model.get_baseline_word_vector(word_to_ind_dict[w1]))))
-        # print ('offset norm: ', np.linalg.norm( np.array(model.get_paragraph_word_vector(i, word_to_ind_dict[w1]))))
-        # exit()
-        # word1_vec = np.array(model.get_baseline_word_vector(word_to_ind_dict[w1]))
         for w2 in all_words:
             word2_vec = np.array(model.get_baseline_word_vector(word_to_ind_dict[w2])) + np.array(model.get_paragraph_word_vector(i, word_to_ind_dict[w2]))
-            # word2_vec = np.array(model.get_baseline_word_vector(word_to_ind_dict[w2]))
-            # print (w1, word1_vec)
-            # print (w2, word2_vec)
-            # exit()
             count += 1
             dist[w2].append(cosine(word1_vec, word2_vec))
             if count % 1000 == 0:
@@ -98,18 +81,59 @@ def find_nearest_words(model, word_to_ind_dict, num_docs):
 
     for w in dist:
         dist[w] = np.mean(dist[w])
-        # dist[w] = np.min(dist[w])
 
     print (json.dumps(sorted(dist.items(), key=lambda x:x[1], reverse=True), indent=4))
 
 
-def check_average_similarities(model, word_to_ind_dict, num_docs):
-    all_words = word_to_ind_dict.keys()
-    # word_1s = ['hate', 'school', 'random', 'good', 'great', 'war', 'black', 'he', 'england', 'soviet']
-    # word_2s = ['love', 'teacher', 'word', 'bad', 'great', 'gun', 'white', 'she', 'churchill', 'russia']
+def find_nearest_words_per_attr_value(model, word_to_ind_dict, num_docs):
 
-    word_1s = ['hate', 'syrian', 'president', 'democrat', 'rush', 'fox', 'random', 'grocery', 'starbucks', 'illegal', 'hey']
-    word_2s = ['love', 'refugees', 'trump', 'republican', 'limbaugh', 'news', 'word', 'store', 'drink', 'immigrants', 'five']
+    print ('Finding nearest words ...')
+
+    w1 = 'war'
+
+    all_words = word_to_ind_dict.keys()
+    count = 0
+    words_per_attr_value = {}
+    for i in range(0, num_docs):
+        dist = defaultdict(list)
+        word1_vec = np.array(model.get_baseline_word_vector(word_to_ind_dict[w1])) + np.array(model.get_paragraph_word_vector(i, word_to_ind_dict[w1]))
+        for w2 in all_words:
+            word2_vec = np.array(model.get_baseline_word_vector(word_to_ind_dict[w2])) + np.array(model.get_paragraph_word_vector(i, word_to_ind_dict[w2]))
+            count += 1
+            dist[w2].append(cosine(word1_vec, word2_vec))
+            if count % 1000 == 0:
+                print (count)
+        words_per_attr_value[i] = sorted(dist.items(), key=lambda x:x[1])[:10]
+    print (words_per_attr_value)
+
+
+# Uses the histwords embedding also used by Garg et al. to compute
+# Decade-specific word embeddings via COHA
+# https://nlp.stanford.edu/projects/histwords/
+def find_nearest_words_non_dynamic():
+    word = 'war'
+    NUM_TO_SHOW = 10
+
+    for i in range(1910, 2000, 10):
+        embs = np.load('sgns/{}-w.npy'.format(i))
+        with open('sgns/{}-vocab.pkl'.format(i), 'rb') as f:
+            vocab = pickle.load(f)
+
+        ind = vocab.index(word)
+        word_emb = embs[ind]
+        dists = cdist([word_emb], embs, metric='cosine')[0]
+        most_similar_word_inds = dists.argsort()
+        most_similar_words = []
+        for j in most_similar_word_inds[:NUM_TO_SHOW]:
+            most_similar_words.append(vocab[j])
+        print('{} {}'.format(i, ','.join(most_similar_words)))
+
+
+def check_average_similarities(model, word_to_ind_dict, num_docs):
+    # all_words = word_to_ind_dict.keys()
+
+    word_1s = ['cold', 'franklin']
+    word_2s = ['war', 'roosevelt']
 
     print ('vocab size: ', len(word_to_ind_dict))
 
@@ -138,12 +162,9 @@ def check_average_similarities(model, word_to_ind_dict, num_docs):
             word_2_vec = baseline_wordvec_2 + word_2_offset
             word_2_vec /= np.linalg.norm(word_2_vec)
 
-            # print (w1, baseline_wordvec_1, word_1_offset)
-            # print (w2, baseline_wordvec_2, word_2_offset)
-            # exit()
             adjusted_sims.append(cosine(word_1_vec, word_2_vec))
 
-        print ('avg adjusted cosine dist for {} and {} is {}: '.format(w1, w2, np.mean(adjusted_sims)))
+        print ('avg adjusted cosine dist for {} and {} is {} and bias list is {} '.format(w1, w2, np.mean(adjusted_sims), adjusted_sims))
 
 
 def compute_bias_categorical(model, word_to_ind_dict, num_docs, neutral_words, baseline_group, target_group):
