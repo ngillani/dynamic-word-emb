@@ -1,11 +1,11 @@
 ## Dynamic embedding model, forked from the PyTorch implementation of paragraph vectors [here](https://github.com/inejc/paragraph-vectors).
 
 Quick sketch of important files (most of the code is taken from the paragraph vectors implementation linked above, with modifications where necessary):
-- paragraphvec/models.py: contains code for categorical dynamic model (class name: DM) and continuous dynamic model (class name: DMSpline — this is a work in progress)
-- paragraphvec/dataset.py: contains functions for a) preparing various datasets (namely COHA and talk radio), and b) creating and serving batches for training
-- paragraphvec/train.py: contains code for training model
-- paragraphvec/compute_bias.py: functions for retrieving vectors and computing bias using the relative norm distance metric from [this paper](https://pnas.org/content/early/2018/03/30/1720347115).
-- paragraphvec/non_dynamic_embeddings.py: functions for producing the attribute-specific w2v models, used as a benchmark in figure 3(a)
+- `paragraphvec/models.py`: contains code for categorical dynamic model (class name: DM) and continuous dynamic model (class name: DMSpline — this is a work in progress)
+- `paragraphvec/dataset.py`: contains functions for a) preparing various datasets (namely COHA and talk radio), and b) creating and serving batches for training
+- `paragraphvec/train.py`: contains code for training model
+- `paragraphvec/compute_bias.py`: functions for retrieving vectors and computing bias using the relative norm distance metric from [this paper](https://pnas.org/content/early/2018/03/30/1720347115).
+- `paragraphvec/non_dynamic_embeddings.py`: functions for producing the attribute-specific w2v models, used as a benchmark in figure 3(a)
 
 ### Instructions for replicating the main results from [Simple dynamic word embeddings for mapping perceptions in the public sphere](https://arxiv.org/pdf/1904.03352.pdf)
 
