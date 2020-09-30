@@ -1,5 +1,13 @@
 ## Dynamic embedding model, forked from the PyTorch implementation of paragraph vectors [here](https://github.com/inejc/paragraph-vectors).
 
+
+This repository contains the code for the **corrected** version of:  
+
+> Gillani & Levy. 2019. Simple dynamic word embeddings for mapping perceptions in the public sphere. Proceedings of the Third Workshop on Natural Language Processing and Computational Social Science. Pages 94–99.  
+
+Please refer to the corrected version of this paper, not the originally-published version, as the results are qualitatively different in the corrected version.
+
+
 Quick sketch of important files (most of the code is taken from the paragraph vectors implementation linked above, with modifications where necessary):
 - `paragraphvec/models.py`: contains code for categorical dynamic model (class name: DM) and continuous dynamic model (class name: DMSpline — this is a work in progress)
 - `paragraphvec/dataset.py`: contains functions for a) preparing various datasets (namely COHA and talk radio), and b) creating and serving batches for training
